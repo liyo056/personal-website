@@ -331,6 +331,10 @@
     background-image: linear-gradient(transparent 58%, rgba(255, 210, 63, 0.34) 58%, rgba(255, 210, 63, 0.34) 94%, transparent 94%);
   }
   #about .sec-head h2::before { content: "🧁 "; }
+  #edu .sec-head h2::before { content: "🎓 "; }
+  #projects .sec-head h2::before { content: "🛠️ "; }
+  #courses .sec-head h2::before { content: "📚 "; }
+  #certs .sec-head h2::before { content: "🏅 "; }
   #hobbies .sec-head h2::before { content: "🍭 "; }
   #works .sec-head h2::before { content: "🚀 "; }
   .sec-head p { color: var(--text-soft); max-width: 60ch; margin: 0; }
@@ -377,6 +381,85 @@
   .now-list li:nth-child(2) .dot { background: linear-gradient(150deg, var(--c-sky), var(--c-lilac)); }
   .now-list li:nth-child(3) .dot { background: linear-gradient(150deg, var(--c-lime), var(--c-mint)); }
   .now-list b { display: block; color: var(--text); font-weight: 800; }
+
+  /* ============================================================
+     学校信息 / 项目经历 / 上过的课程 / 培训证书
+     ============================================================ */
+  .edu-card {
+    display: grid; grid-template-columns: auto 1fr; gap: clamp(16px, 3vw, 28px);
+    align-items: center;
+    background: var(--surface); border: 3px solid var(--ink);
+    border-radius: var(--radius); padding: clamp(20px, 3vw, 30px);
+    box-shadow: var(--shadow-sm);
+  }
+  .edu-badge {
+    width: 88px; height: 88px; border-radius: 22px; display: grid; place-items: center;
+    font-size: 2.4rem; border: 3px solid var(--ink); box-shadow: 0 5px 0 var(--ink);
+    background: linear-gradient(150deg, var(--c-sky), var(--c-lilac));
+    transform: rotate(-5deg);
+  }
+  .edu-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
+  .edu-card .meta { color: var(--text-soft); font-size: 0.92rem; margin-bottom: 14px; }
+  .edu-list { display: grid; gap: 10px; }
+  .edu-list li { display: flex; gap: 12px; font-size: 0.94rem; color: var(--text-soft); }
+  .edu-list b {
+    color: var(--text); font-weight: 800; min-width: 5em; flex: 0 0 auto;
+  }
+
+  /* 时间线式列表：项目 / 课程 / 证书通用 */
+  .timeline { display: grid; gap: 18px; }
+  .t-item {
+    position: relative; background: var(--surface); border: 3px solid var(--ink);
+    border-radius: var(--radius); padding: 20px 22px 20px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.24s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.24s;
+  }
+  .t-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 0 rgba(51, 32, 74, 0.16), 0 20px 32px rgba(51, 32, 74, 0.12);
+  }
+  .t-item::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+    border-radius: 6px 0 0 6px; background: linear-gradient(180deg, var(--brand), var(--c-orange));
+  }
+  .t-item:nth-child(3n+2)::before { background: linear-gradient(180deg, var(--c-mint), var(--c-sky)); }
+  .t-item:nth-child(3n+3)::before { background: linear-gradient(180deg, var(--c-lilac), var(--brand-2)); }
+  .t-item .t-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; margin-bottom: 6px; }
+  .t-item h3 { font-size: 1.05rem; font-weight: 800; }
+  .t-item .t-time {
+    font-size: 0.76rem; font-weight: 700; color: var(--text-soft);
+    background: var(--surface-soft); border-radius: 999px; padding: 2px 11px;
+  }
+  .t-item p { font-size: 0.93rem; color: var(--text-soft); margin: 0; }
+  .t-item .t-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .t-item .t-tags span {
+    font-size: 0.78rem; font-weight: 700; padding: 3px 11px; border-radius: 999px;
+    background: #e8e1ff; color: #33204a; border: 2px solid var(--ink);
+  }
+  .t-item .t-tags span:nth-child(2) { background: #dffbf9; }
+  .t-item .t-tags span:nth-child(3) { background: #ffe3ee; }
+  html[data-theme="dark"] .t-item .t-tags span { background: var(--surface-soft); color: var(--text); }
+
+  /* 证书网格 */
+  .grid-cert { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .cert {
+    background: var(--surface); border: 3px solid var(--ink); border-radius: var(--radius);
+    padding: 22px; box-shadow: 0 6px 0 rgba(51, 32, 74, 0.14);
+    transition: transform 0.24s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.24s;
+  }
+  .cert:hover {
+    transform: translateY(-8px) rotate(-1.2deg);
+    box-shadow: 0 11px 0 rgba(51, 32, 74, 0.16), 0 22px 34px rgba(51, 32, 74, 0.12);
+  }
+  .cert .ico {
+    width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center;
+    font-size: 1.5rem; margin-bottom: 12px; border: 3px solid var(--ink);
+    box-shadow: 0 4px 0 var(--ink); transform: rotate(-5deg);
+    background: linear-gradient(150deg, var(--c-yellow), var(--c-orange));
+  }
+  .cert h3 { font-size: 1.02rem; font-weight: 800; margin-bottom: 4px; }
+  .cert .org { color: var(--text-soft); font-size: 0.88rem; margin-bottom: 6px; }
+  .cert .time { font-size: 0.78rem; font-weight: 700; color: var(--text-soft); }
 
   /* 兴趣爱好 */
   .grid-hobby { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
@@ -633,12 +716,16 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#home">
-      <span class="mark" aria-hidden="true">苏</span>
+      <span class="mark" aria-hidden="true">廖</span>
       <span>廖宇浩</span>
     </a>
     <nav aria-label="主导航">
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">关于我</a></li>
+        <li><a href="#edu">学校信息</a></li>
+        <li><a href="#projects">项目经历</a></li>
+        <li><a href="#courses">上过的课程</a></li>
+        <li><a href="#certs">培训证书</a></li>
         <li><a href="#hobbies">兴趣爱好</a></li>
         <li><a href="#works">作品集</a></li>
         <li><a href="#contact">联系我</a></li>
@@ -736,6 +823,115 @@
             <li><span class="dot" aria-hidden="true"></span><span><b>摄影</b>小目标是成为摄影大师，拍下更多美好的瞬间。</span></li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       学校信息
+       ============================================================ -->
+  <section id="edu">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>学校信息</h2>
+        <p>我的求学经历与在读信息。</p>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-badge" aria-hidden="true">🎓</div>
+        <div>
+          <h3>四川传媒学院</h3>
+          <p class="meta">本科 · 待补充专业 · 2022 级</p>
+          <ul class="edu-list">
+            <li><b>专业</b><span>待补充</span></li>
+            <li><b>学历</b><span>本科</span></li>
+            <li><b>入学时间</b><span>2022 年 9 月</span></li>
+            <li><b>所在城市</b><span>成都</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       项目经历：复制一个 <article class="t-item"> ... </article> 即可新增
+       ============================================================ -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>项目经历</h2>
+        <p>做过的项目、课程作业和个人作品，都在这里。</p>
+      </div>
+      <div class="timeline">
+        <article class="t-item reveal">
+          <div class="t-head">
+            <h3>项目名称（待补充）</h3>
+            <span class="t-time">2024 年</span>
+          </div>
+          <p>项目简介：用一两句话说明这个项目是做什么的、你的角色和最终成果。</p>
+          <div class="t-tags"><span>技术栈 A</span><span>技术栈 B</span></div>
+        </article>
+        <article class="t-item reveal">
+          <div class="t-head">
+            <h3>项目名称（待补充）</h3>
+            <span class="t-time">2024 年</span>
+          </div>
+          <p>项目简介：待补充。</p>
+          <div class="t-tags"><span>技术栈 A</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       上过的课程：复制一个 <article class="t-item"> ... </article> 即可新增
+       ============================================================ -->
+  <section id="courses">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>上过的课程</h2>
+        <p>在校期间修读的主要课程。</p>
+      </div>
+      <div class="timeline">
+        <article class="t-item reveal">
+          <div class="t-head">
+            <h3>课程名称（待补充）</h3>
+            <span class="t-time">2024 年</span>
+          </div>
+          <p>课程收获或成绩：待补充。</p>
+        </article>
+        <article class="t-item reveal">
+          <div class="t-head">
+            <h3>课程名称（待补充）</h3>
+            <span class="t-time">2024 年</span>
+          </div>
+          <p>课程收获或成绩：待补充。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       培训证书：复制一个 <article class="cert"> ... </article> 即可新增
+       ============================================================ -->
+  <section id="certs">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>培训证书</h2>
+        <p>获得过的证书与培训经历。</p>
+      </div>
+      <div class="grid-cert">
+        <article class="cert reveal">
+          <div class="ico" aria-hidden="true">🏅</div>
+          <h3>证书名称（待补充）</h3>
+          <p class="org">颁发机构（待补充）</p>
+          <span class="time">2024 年</span>
+        </article>
+        <article class="cert reveal">
+          <div class="ico" aria-hidden="true">📜</div>
+          <h3>证书名称（待补充）</h3>
+          <p class="org">颁发机构（待补充）</p>
+          <span class="time">2024 年</span>
+        </article>
       </div>
     </div>
   </section>
